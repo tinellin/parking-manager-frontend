@@ -1,0 +1,12 @@
+:root {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #181b23;
+  color: #eeeef2;
+
+  font-family: Roboto, sans-serif;
+
+  max-width: 1480px;
+  margin: 0 auto;
+}
