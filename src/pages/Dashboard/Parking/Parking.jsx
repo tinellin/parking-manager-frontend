@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { errorHandler } from "../../utils/errorHandler";
-import { api } from "../../utils/api";
+import { errorHandler } from "../../../utils/errorHandler";
+import { api } from "../../../utils/api";
 
-export function Dashboard() {
+export function Parking() {
   const [parking, setParking] = useState([])
   const cols = ["Placa do carro", "Marca", "Modelo", "Cor", "Valor", "Desconto", "Entrada", "Saída"];
 
@@ -18,16 +18,6 @@ export function Dashboard() {
 
     fetchParking();
   }, [])
-
-  const options = {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: undefined, // Do not include seconds
-    hour12: false // Use 24-hour format
-  };
 
   return (
     <div className="flex justify-around items-center">
