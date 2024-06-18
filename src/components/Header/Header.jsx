@@ -3,14 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { api } from "../../utils/api";
 
 export function Header() {
-  const { user } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    delete api.defaults.headers["Authorization"];
-    localStorage.removeItem("token");
-    return navigate("/login", { replace: true });
-  }
+  const { user, logout } = useAuth();
 
   return (
     <header className="h-[10vh] flex items-center justify-between">
@@ -25,7 +18,9 @@ export function Header() {
 
       <div>
         <h3>{user.username}</h3>
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={logout} className="text-sm bg-red-600 p-2 rounded-sm hover:opacity-85 transition-all font-bold">
+          Logout
+        </button>
       </div>
     </header>
   )

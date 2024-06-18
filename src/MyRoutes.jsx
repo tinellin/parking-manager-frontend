@@ -6,11 +6,7 @@ import { ClientRoutes } from "./ClientRoutes";
 import { useAuth } from "./context/AuthContext";
 
 export function MyRoutes() {
-  const { user, loadingUser } = useAuth();
-
-  if (loadingUser) {
-    return <div>Carregando...</div>;
-  }
+  const { user } = useAuth();
 
   return (
     <Routes>

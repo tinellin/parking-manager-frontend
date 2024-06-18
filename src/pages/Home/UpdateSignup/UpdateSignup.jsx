@@ -49,44 +49,43 @@ export function UpdateSignup() {
   }
 
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <Title title="Atualizar senha"/>
-
-      <form
-        onSubmit={handleSubmit}
-        className="p-12 bg-my-gray-800 rounded-md w-[400px]"
-      >
-        <Input
-          type="password"
-          name="password"
-          placeholder="Digite sua senha antiga"
-          content="Senha atual"
-          value={password}
-          setState={setPassword}
-        />
-        <Input
-          type="password"
-          name="newPassword"
-          placeholder="Digite sua nova senha"
-          content="Nova senha"
-          value={newPassword}
-          setState={setNewPassword}
-        />
-        <Input
-          type="password"
-          name="confirmNewPassword"
-          placeholder="Confirme sua nova senha"
-          content="Confirme a nova senha"
-          value={confirmNewPassword}
-          setState={setConfirmNewPassword}
-        />
-        <button
-          type="submit"
-          className="text-sm bg-blue-600 p-2 w-[100%] rounded-sm hover:opacity-85 transition-all font-bold"
+        <form
+          onSubmit={handleSubmit}
+          className="p-12 bg-my-gray-800 rounded-md w-[400px]"
         >
-          Enviar
-        </button>
-      </form>
-    </>
+          <Input
+            type="password"
+            name="password"
+            placeholder="Digite sua senha antiga"
+            content="Senha atual"
+            value={password}
+            setState={setPassword}
+          />
+          <Input
+            type="password"
+            name="newPassword"
+            placeholder="Digite sua nova senha"
+            content="Nova senha"
+            value={newPassword}
+            setState={setNewPassword}
+          />
+          <Input
+            type="password"
+            name="confirmNewPassword"
+            placeholder="Confirme sua nova senha"
+            content="Confirme a nova senha"
+            value={confirmNewPassword}
+            setState={setConfirmNewPassword}
+          />
+          <button
+            type="submit"
+            className="text-sm bg-blue-600 p-2 w-[100%] rounded-sm hover:opacity-85 transition-all font-bold"
+          >
+            Enviar
+          </button>
+        </form>
+    </div>
   );
 }
