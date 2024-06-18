@@ -6,55 +6,80 @@ import { Title } from "../../../components/Title/Title";
 import { Input } from "../../../components/Input/Input";
 import { useAuth } from "../../../context/AuthContext";
 
-export function VehiclesForm() { // Corrigi o nome da função para FinancesForm
-  const [value, setValue] = useState("");
+
+export function VehiclesForm() {
+  const [licensePlate, setLicensePlate] = useState("");
+  const [carBrand, setCarBrand] = useState("");
+  const [carModel, setCarModel] = useState("");
+  const [carColor, setCarColor] = useState("");
   const { token } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const parsedValue = parseFloat(value); // Parsing the value to a float
-
     try {
-      if (!value || isNaN(parsedValue)) {
-        throw new Error("Digite um valor válido!");
-      }
+      const data = {
+        licensePlate,
+        carBrand,
+        carModel,
+        carColor,
+      };
 
-      await api.patch(
-        `/balance/${parsedValue.toFixed(2)}`, // Passing the parsed value
-        null, // No body content
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await api.post(`/customers/cars`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      navigate("/home");
+      navigate("/home/vehicles");
     } catch (err) {
       errorHandler(err);
     }
   }
 
   function handleCancel() {
-    navigate("/home");
+    navigate("/home/vehicles");
   }
 
   return (
     <>
-      <Title title="Adicionar saldo" />
+      <Title title="Adicionar veículo" />
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 gap-x-4 gap-y-2"
       >
         <Input
           type="text"
-          name="value"
-          placeholder="Digite o valor a ser adicionado"
-          content="Valor"
-          value={value}
-          onChange={(e) => setValue(e.target.value)} // Ensure the value is updated
+          name="licensePlate"
+          placeholder="Digite a placa"
+          content="Placa"
+          state={licensePlate}
+          setState={setLicensePlate}
+        />
+        <Input
+          type="text"
+          name="carBrand"
+          placeholder="Digite a marca"
+          content="Marca"
+          state={carBrand}
+          setState={setCarBrand}
+        />
+        <Input
+          type="text"
+          name="carModel"
+          placeholder="Digite o modelo"
+          content="Modelo"
+          state={carModel}
+          setState={setCarModel}
+        />
+        <Input
+          type="text"
+          name="carColor"
+          placeholder="Digite a cor do veículo"
+          content="Cor"
+          state={carColor}
+          setState={setCarColor}
         />
 
         <button

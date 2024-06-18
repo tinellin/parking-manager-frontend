@@ -24,9 +24,9 @@ export function ClientRoutes() {
         <Route path="/home/vehicles/adicionar-veiculo" element={<VehiclesForm />} />
         <Route path="/home/update-signup" element={<UpdateSignup />} />
         <Route path="/home/adicionar-saldo" element={<FinancesForm />} />
-        <Route path="/create-customer" element={<RegisterCustomer />} />
         {/* Outras rotas do cliente */}
       </Route>
+      <Route path="/create-customer" element={<RegisterCustomer />} />
     </Routes>
   );
 }

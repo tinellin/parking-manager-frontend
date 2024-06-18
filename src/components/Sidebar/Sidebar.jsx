@@ -13,7 +13,7 @@ export function Sidebar() {
       </NavSection>
 
       <NavSection title="Gerenciamento">
-        <NavLink title="Empregados" icon={<MdWorkOutline />} to="employees" />
+        <NavLink title="Funcionários" icon={<MdWorkOutline />} to="employees" />
         <NavLink title="Clientes" icon={<FaPerson />} to="customers" />
       </NavSection>
    </section>   

@@ -11,10 +11,8 @@ import { LayoutAdmin } from './pages/Dashboard/index';
 
 export function AdminRoutes() {
   const { user } = useAuth();
-
   
   if (user.role !== 'ADMIN') {
-    console.log("caiu aqui!!");
     return <Navigate to="/" />;
   }
 

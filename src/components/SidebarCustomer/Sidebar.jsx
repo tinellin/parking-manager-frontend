@@ -8,9 +8,9 @@ export function Sidebar() {
   return ( 
     <section className="flex flex-col py-5 col-span-1">
       <NavSection title="Geral">
-        <NavLink title="Finanças" icon={<TbPigMoney />} to=""/>
+        <NavLink title="Detalhes da conta" icon={<TbPigMoney />} to=""/>
         <NavLink title="Veículos" icon={<FaCar />} to="/vehicles"/>
-        <NavLink title="Atualizar cadastro" icon={<FaUserEdit />} to="/update-signup" />
+        <NavLink title="Atualizar senha" icon={<FaUserEdit />} to="/update-signup" />
       </NavSection>
 
    </section>   

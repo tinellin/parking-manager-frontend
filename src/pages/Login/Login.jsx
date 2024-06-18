@@ -10,7 +10,6 @@ export function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
   const { setToken, user, loadingUser } = useAuth();
 
   async function handleSubmit(e) {
@@ -49,14 +48,37 @@ export function Login() {
   }, [loadingUser, user, navigate]);
 
   return (
-    <div className="flex items-center justify-center col-span- rounded-md h-[100vh]">
-      <form onSubmit={handleSubmit} className="p-12 bg-my-gray-800 rounded-md">
-        <Input type="email" name="username" placeholder="Digite seu e-mail" content="E-mail" state={username} setState={setUsername} />
-        <Input type="password" name="password" placeholder="Digite sua senha" content="Senha" state={password} setState={setPassword} />
-        <button type="submit" className="text-sm bg-blue-600 p-2 w-[100%] rounded-sm hover:opacity-85 transition-all font-bold" disabled={loading}>
+    <div className="flex items-center justify-center h-screen">
+      <form onSubmit={handleSubmit} className="p-12 bg-gray-800 rounded-md">
+        <Input
+          type="email"
+          name="username"
+          placeholder="Digite seu e-mail"
+          content="E-mail"
+          state={username}
+          setState={setUsername}
+        />
+        <Input
+          type="password"
+          name="password"
+          placeholder="Digite sua senha"
+          content="Senha"
+          state={password}
+          setState={setPassword}
+        />
+        <button
+          type="submit"
+          className="text-sm bg-blue-600 p-2 w-full rounded-sm hover:opacity-85 transition-all font-bold"
+          disabled={loading}
+        >
           {loading ? "Carregando..." : "Enviar"}
         </button>
-        <p className="text-my-gray-600 mt-4">Não tem uma conta? <Link to="/register" className="underline"> Crie uma clicando aqui</Link></p>
+        <p className="text-gray-600 mt-4">
+          Não tem uma conta?{" "}
+          <Link to="/register" className="underline">
+            Crie uma clicando aqui
+          </Link>
+        </p>
       </form>
     </div>
   );

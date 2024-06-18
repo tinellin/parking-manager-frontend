@@ -17,7 +17,7 @@ export function EmployeeForm() {
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const data = {
       name,
@@ -25,19 +25,19 @@ export function EmployeeForm() {
       birthday,
       role,
       entryTime,
-      departureTime
-    }
+      departureTime,
+    };
 
     try {
       if (!name || !cpf || !birthday || !role || !entryTime || !departureTime) {
-        throw new Error("Preencha os dados corretamente!")
+        throw new Error("Preencha os dados corretamente!");
       }
-  
+
       await api.post("/employees", data);
-  
-      return navigate("/dashboard/employees")
+
+      return navigate("/dashboard/employees");
     } catch (err) {
-      errorHandler(err.message)
+      errorHandler(err.message);
     }
   }
 
@@ -47,18 +47,74 @@ export function EmployeeForm() {
 
   return (
     <>
-      <Title title={"Cadastrar novo funcionário"}/>
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-x-4 gap-y-2">
-        <Input type="text" name="name" placeholder="Digite o nome" content="Nome"  state={name} setState={setName}/>
-        <Input type="text" name="cpf" placeholder="Digite o CPF" content="cpf" state={cpf} setState={setCpf}/>
-        <Input type="text" name="birthday" placeholder="Digite a data de nascimento (YYYY-MM-DD)" content="Data de nascimento" state={birthday} setState={setBirthday}/>
-        <Input type="text" name="role" placeholder="Digite a função" content="Função" state={role} setState={setRole}/>
-        <Input type="text" name="entryTime" placeholder="Digite a hora de entrada (HH:MM)" content="Hora de entrada" state={entryTime} setState={setEntryTime}/>
-        <Input type="text" name="departureTime" placeholder="Digite a hora de saída (HH:MM)" content="Hora de saída" state={departureTime} setState={setDepartureTime}/>
+      <Title title={"Cadastrar novo funcionário"} />
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-2 gap-x-4 gap-y-2"
+      >
+        <Input
+          type="text"
+          name="name"
+          placeholder="Digite o nome"
+          content="Nome"
+          state={name}
+          setState={setName}
+        />
+        <Input
+          type="text"
+          name="cpf"
+          placeholder="Digite o CPF"
+          content="cpf"
+          state={cpf}
+          setState={setCpf}
+        />
+        <Input
+          type="text"
+          name="birthday"
+          placeholder="Digite a data de nascimento (YYYY-MM-DD)"
+          content="Data de nascimento"
+          state={birthday}
+          setState={setBirthday}
+        />
+        <Input
+          type="text"
+          name="role"
+          placeholder="Digite a função"
+          content="Função"
+          state={role}
+          setState={setRole}
+        />
+        <Input
+          type="text"
+          name="entryTime"
+          placeholder="Digite a hora de entrada (HH:MM)"
+          content="Hora de entrada"
+          state={entryTime}
+          setState={setEntryTime}
+        />
+        <Input
+          type="text"
+          name="departureTime"
+          placeholder="Digite a hora de saída (HH:MM)"
+          content="Hora de saída"
+          state={departureTime}
+          setState={setDepartureTime}
+        />
 
-        <button type="button" className="text-sm bg-my-gray-500 p-2 w-[100%] rounded-sm hover:opacity-85 transition-all font-bold" onClick={handleCancel}>Cancelar</button>
-        <button type="submit" className="text-sm bg-blue-600 p-2 w-[100%] rounded-sm hover:opacity-85 transition-all font-bold">Salvar</button>
+        <button
+          type="button"
+          className="text-sm bg-my-gray-500 p-2 w-[100%] rounded-sm hover:opacity-85 transition-all font-bold"
+          onClick={handleCancel}
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          className="text-sm bg-blue-600 p-2 w-[100%] rounded-sm hover:opacity-85 transition-all font-bold"
+        >
+          Salvar
+        </button>
       </form>
     </>
-  )
+  );
 }
