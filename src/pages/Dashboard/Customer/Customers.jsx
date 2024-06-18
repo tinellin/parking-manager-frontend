@@ -29,6 +29,9 @@ export function Customers() {
       <div className="flex items-center justify-between mb-4">
         <Title title="Clientes"/>
       </div>
+      <div className="mb-4">
+          <p>Total de Clientes: {customers.length}</p>
+      </div>
 
       <div className="flex justify-around items-center">
         <table className="w-[100%]">

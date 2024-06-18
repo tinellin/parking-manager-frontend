@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Input } from "../../components/Input/Input";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../utils/api";
 
 export function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [birthday, setBirthday] = useState("");
+
 
   const navigate = useNavigate();
 
@@ -17,14 +23,8 @@ export function Register() {
       return;
     }
 
-    fetch("http://localhost:8080/api/v1/users", {
-      method: "POST",
-      body: JSON.stringify({ username, password, confirmPassword }),
-      headers: {
-        "Content-Type": "application/json"
-      },
-    })
-
+    api.post("/users", { username, password, confirmPassword })
+    
     navigate("/")
   }
 

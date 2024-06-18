@@ -33,6 +33,9 @@ export function Employees() {
           <span>Criar novo</span>
         </Link>
       </div>
+      <div className="mb-4">
+          <p>Total de Funcionários: {employees.length}</p>
+      </div>
 
     <div className="flex justify-around items-center">
       <table className="w-[100%]">
