@@ -9,7 +9,7 @@ export function Header() {
   const handleLogout = () => {
     delete api.defaults.headers["Authorization"];
     localStorage.removeItem("token");
-    navigate("/", { replace: true });
+    return navigate("/login", { replace: true });
   }
 
   return (
@@ -24,9 +24,9 @@ export function Header() {
       </div>
 
       <div>
-          <h3>{user.username}</h3>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+        <h3>{user.username}</h3>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
     </header>
   )
 }

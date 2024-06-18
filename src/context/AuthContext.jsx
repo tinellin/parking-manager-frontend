@@ -5,36 +5,38 @@ import { Navigate } from "react-router-dom";
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [ token, setToken ] = useState(JSON.parse(localStorage.getItem("token")));
-  const [user, setUser] = useState({});
+  const [token, setToken] = useState(JSON.parse(localStorage.getItem("token")));
+  const [user, setUser] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
     async function getUserDetails() {
-      if (!token) return;
-
-      console.log(token);
+      if (!token) {
+        setLoadingUser(false);
+        return;
+      }
 
       try {
         api.defaults.headers.common["Authorization"] = "Bearer " + token;
-
-        // user:
         const { data } = await api.get("/users/details");
         setUser(data);
       } catch (e) {
         delete api.defaults.headers["Authorization"];
         localStorage.removeItem("token");
-        <Navigate to="/"/>
+        <Navigate to="/"/>;
+      } finally {
+        setLoadingUser(false);
       }
     }
 
     getUserDetails();
-  }, [token])
+  }, [token]);
 
   return (
-    <AuthContext.Provider value={ {  token, setToken, user } }>
-      { children }
+    <AuthContext.Provider value={{ token, setToken, user, loadingUser }}>
+      {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
 const useAuth = () => {

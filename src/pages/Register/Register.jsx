@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Input } from "../../components/Input/Input";
+import { useNavigate } from "react-router-dom";
 
 export function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if(!username || password || confirmPassword) {
+    if(!username || !password || !confirmPassword) {
       alert("Preencha todos os dados corretamente.")
       return;
     }
@@ -21,6 +24,8 @@ export function Register() {
         "Content-Type": "application/json"
       },
     })
+
+    navigate("/")
   }
 
   return (

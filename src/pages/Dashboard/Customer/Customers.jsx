@@ -15,7 +15,6 @@ export function Customers() {
       try {
         const { data } = await api.get("/customers");
         setCustomers(data.content)
-        console.log(data);
       } catch (e) {
         errorHandler("Ocorreu um erro ao recuperar os dados");
       }

@@ -15,7 +15,6 @@ export function Employees() {
       try {
         const { data } = await api.get("/employees");
         setEmployees(data)
-        console.log(data);
       } catch (e) {
         errorHandler("Ocorreu um erro ao recuperar os dados");
       }

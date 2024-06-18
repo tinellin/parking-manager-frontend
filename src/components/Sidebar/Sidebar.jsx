@@ -6,7 +6,7 @@ import { NavSection } from "./NavSection";
 
 export function Sidebar() {
   return ( 
-    <section className="flex flex-col py-5 border col-span-1">
+    <section className="flex flex-col py-5 col-span-1">
       <NavSection title="Geral">
         <NavLink title="Dashboard" icon={<MdOutlineDashboard />} to=""/>
         <NavLink title="Vagas" icon={<FaCar />} to="parking-spots"/>

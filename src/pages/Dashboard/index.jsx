@@ -7,9 +7,9 @@ export function LayoutAdmin() {
   return (
     <>
       <Header />
-      <div className="flex">
-        <Sidebar className="w-1/6" />
-        <main className="w-5/6 bg-my-gray-800 rounded-md p-5 border">
+      <div className="grid grid-cols-6">
+        <Sidebar className="col-span-1" />
+        <main className="col-span-5 bg-my-gray-800 rounded-md p-5">
           <Outlet />
         </main>
       </div>

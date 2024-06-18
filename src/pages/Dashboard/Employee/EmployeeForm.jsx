@@ -28,8 +28,6 @@ export function EmployeeForm() {
       departureTime
     }
 
-    console.log(data);
-
     try {
       if (!name || !cpf || !birthday || !role || !entryTime || !departureTime) {
         throw new Error("Preencha os dados corretamente!")
@@ -44,7 +42,6 @@ export function EmployeeForm() {
   }
 
   function handleCancel() {
-    console.log("dasdasdasads");
     navigate("/dashboard/employees");
   }
 

@@ -1,30 +1,21 @@
-import { AuthProvider } from './context/AuthContext'
-
-import { AdminRoutes } from "./AdminRoutes";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 
 import "./styles/global.css";
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { Login } from './pages/Login/Login';
-import { Register } from './pages/Register/Register';
+import { MyRoutes } from './MyRoutes';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <AuthProvider>
         <ToastContainer />
-        <Routes>
-            {/* Public routes */}
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />}/>
-        </Routes>
-        <AdminRoutes />
+        <MyRoutes />
       </AuthProvider>
-    </BrowserRouter>
+    </Router>
   )
 }
 
-export default App
+export default App;

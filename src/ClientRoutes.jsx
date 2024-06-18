@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 
-import { Home } from "./pages/Home/Home";
-import { LayoutClient } from './LayoutClient';
+import { Home } from "./pages/Home/Home/Home";
+import { LayoutClient } from './pages/Home/index';
 
 export function ClientRoutes() {
   const { user } = useAuth();
