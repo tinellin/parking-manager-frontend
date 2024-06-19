@@ -37,7 +37,12 @@ export function Login() {
       if (userDetails.role === "ADMIN") {
         navigate("/dashboard", { replace: true });
       } else {
-        navigate("/home", { replace: true });
+        try {
+          await api.get("/customers/details");
+          navigate("/home", { replace: true });
+        } catch (err) {
+          navigate("/create-customer", { replace: true });
+        }
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);

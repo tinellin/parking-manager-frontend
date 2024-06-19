@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { LuPlus } from "react-icons/lu";
 import { errorHandler } from "../../../utils/errorHandler";
 import { api } from "../../../utils/api";
+import { Pagination } from "../../../components/Pagination/Pagination";
 
 export function ParkingSpots() {
   const cols = ["Código", "Status", "Tipo"];
@@ -13,11 +14,15 @@ export function ParkingSpots() {
   const [availableSpots, setAvailableSpots] = useState(0);
   const [occupiedSpots, setOccupiedSpots] = useState(0);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState([]);
+
   useEffect(() => {    
     const fetchParkingSpots = async () => {
       try {
-        const { data } = await api.get("/parking-spots");
-        const formattedData = data.map(val => {
+        const { data } = await api.get(`/parking-spots?page=${currentPage - 1}&size=5`);
+
+        const formattedData = data.content.map(val => {
           if (val.status === "FREE") {
             val.status = "Livre";
           } else {
@@ -25,11 +30,28 @@ export function ParkingSpots() {
           }
           return val;
         });
+        
+        if (currentPage === 1) {
+          const { data } = await api.get(`/parking-spots`);
+
+          const formattedData = data.content.map(val => {
+            if (val.status === "FREE") {
+              val.status = "Livre";
+            } else {
+              val.status = "Ocupado";
+            }
+            return val;
+          });
+          
+          setTotalSpots(formattedData.length);
+          setAvailableSpots(formattedData.filter(val => val.status === "Livre").length);
+          setOccupiedSpots(formattedData.filter(val => val.status === "Ocupado").length);
+        }
 
         setParkingSpots(formattedData);
-        setTotalSpots(formattedData.length);
-        setAvailableSpots(formattedData.filter(val => val.status === "Livre").length);
-        setOccupiedSpots(formattedData.filter(val => val.status === "Ocupado").length);
+
+        currentPage === 1 && 
+          setTotalPages(Array.from({ length: data.totalPages }, (_v, i) => i + 1));
 
       } catch (e) {
         errorHandler("Ocorreu um erro ao recuperar os dados");
@@ -37,7 +59,7 @@ export function ParkingSpots() {
     }
 
     fetchParkingSpots();
-  }, [])
+  }, [currentPage])
 
   return (
     <>
@@ -78,6 +100,7 @@ export function ParkingSpots() {
           </tbody>
         </table>
       </div>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
     </>
   )
 }
